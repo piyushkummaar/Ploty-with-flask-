@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Home</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1>Plotly Chart</h1>      
+    <p>In which we using the IRIS dataset where we apply Kmeans on the dataset.</p>
+  </div>
+</div>
+
+<div class="container">
+    {% if not header %}
+    <p>Click to see Iris kmeans <a href="treemap">treemap</a>.</p> 
+    <p>Click to see Iris Simple <a href="treemapIRIS">treemap</a>.</p> 
+    {%else%}
+    <p>Click to here <a href="/">refresh</a>.</p>
+    {% endif%}
+</div>
+
+{% if header %}
+<div class="container">
+    <h1>{{header}}</h1>
+    <div id="chart" class="chart"></div>
+    <p>{{description}}</p>
+</div>
+
+{% endif %}
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script type="text/javascript">
+    var graphs = {{graphJSON | safe}};
+    Plotly.plot('chart',graphs,{});        
+</script>
+</body>
+</html>
+
+
+
